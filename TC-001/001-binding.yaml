@@ -4,5 +4,5 @@ metadata:
   name: require-app-label-binding
 spec:
   policyName: require-app-label
-  validationActions: [Warn]
+  validationActions: [Deny]
 

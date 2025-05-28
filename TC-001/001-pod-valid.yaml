@@ -1,0 +1,12 @@
+# pod-valid.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-valid
+  labels:
+    app: frontend
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+

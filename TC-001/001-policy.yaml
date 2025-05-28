@@ -10,6 +10,6 @@ spec:
         operations: ["CREATE"]
         resources: ["pods"]
   validations:
-    - expression: "object.metadata.labels == 'app'"
+    - expression: 'has(object.metadata.labels) && "app" in object.metadata.labels'
       message: "Missing required label 'app'"
 
