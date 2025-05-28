@@ -1,0 +1,10 @@
+# pod-invalid.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-invalid
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+
