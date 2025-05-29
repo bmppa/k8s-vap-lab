@@ -27,6 +27,3 @@ To validate that Kubernetes Validation Admission Policies (VAP) enforce defined 
 | TC-006       | Validate annotation presence for ingress (e.g., `nginx.ingress.kubernetes.io/rewrite-target`) | Ingress                | Ingress missing annotation is rejected                |
 | TC-007       | Test CEL logic error (invalid expression)                                                     | Admission Policy       | Policy fails to apply, error shown                    |
 | TC-008       | Test policy binding in a different namespace                                                  | Namespace-specific Pod | Policy binding applies and rejects non-compliant Pods |
-
----
-
