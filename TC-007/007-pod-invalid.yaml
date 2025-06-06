@@ -1,0 +1,10 @@
+# pod-missing-run-as-non-root.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-missing-run-as-non-root
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+

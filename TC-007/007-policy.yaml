@@ -1,0 +1,20 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: require-run-as-non-root
+spec:
+  matchConstraints:
+    resourceRules:
+      - apiGroups: [""]
+        apiVersions: ["v1"]
+        operations: ["CREATE"]
+        resources: ["pods"]
+  validations:
+    - expression: |
+        object.spec.containers.all(c, 
+          has(c.securityContext) && 
+          has(c.securityContext.runAsNonRoot) && 
+          c.securityContext.runAsNonRoot == true
+        )
+      message: "All containers must set securityContext.runAsNonRoot: true"
+
