@@ -1,0 +1,17 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: require-ingress-rewrite-annotation
+spec:
+  matchConstraints:
+    resourceRules:
+      - apiGroups: ["networking.k8s.io"]
+        apiVersions: ["v1"]
+        operations: ["CREATE"]
+        resources: ["ingresses"]
+  validations:
+    - expression: >
+        has(object.metadata.annotations) &&
+        object.metadata.annotations["nginx.ingress.kubernetes.io/rewrite-target"] != ""
+      message: "Ingress must include 'nginx.ingress.kubernetes.io/rewrite-target' annotation with a non-empty value"
+
