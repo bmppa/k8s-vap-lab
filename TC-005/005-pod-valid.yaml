@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-uses-tag
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.25.2
+
