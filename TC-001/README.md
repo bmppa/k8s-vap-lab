@@ -1,30 +1,15 @@
-## 🧪 **Test Case TC-001 – Disallow `latest` Image Tags**
+## ✅ **Step-by-Step Instructions**
 
-### 🎯 **Objective**
-
-Reject any Pod where a container image tag is set to `latest`.
-
----
-
-## ✅ **Step-by-Step Instructions to Run TC-001**
+These steps are similar to all test cases. Make sure you check the file names before running the commands.
 
 ### 1. 📁 Clone or navigate to the test directory
 
-```bash
+```
 git clone https://github.com/bmppa/k8s-vap-lab.git
 cd k8s-vap-lab/TC-001
 ```
 
-> Make sure you're in the folder that contains the following files:
-
-```
-tc-001/
-├── 001-policy.yaml
-├── 001-binding.yaml
-├── 001-pod-invalid.yaml
-├── 001-pod-valid.yaml
-└── 001-test.sh
-```
+> Replace the 1 in TC-001 with the test case number you want to try.
 
 ---
 
@@ -37,7 +22,7 @@ kubectl apply -f 001-binding.yaml
 
 ---
 
-### 3. 🚫 Attempt to Create a Pod Using `:latest` (Should Be Rejected)
+### 3. 🚫 Attempt to Create a Pod/Deployment/Ingress (Should Be Rejected)
 
 ```
 kubectl apply -f 001-pod-invalid.yaml
@@ -46,17 +31,17 @@ kubectl apply -f 001-pod-invalid.yaml
 Expected output:
 
 ```
-Error from server: admission webhook "validation.policy.k8s.io" denied the request:
-Image tag 'latest' is not allowed
+The pods "test-pod-invalid" is invalid: : ValidatingAdmissionPolicy 'require-app-label' with binding 'require-app-label-binding' denied request: 
+Missing required label 'app'
 ```
 
 ✅ This confirms the policy is working.
 
 ---
 
-### 4. ✅ Try a Compliant Pod with a Fixed Tag (Should Be Accepted)
+### 4. ✅ Try a Compliant Pod with a Label (Should Be Accepted)
 
-```bash
+```
 kubectl apply -f 001-pod-valid.yaml
 ```
 
@@ -100,5 +85,3 @@ kubectl delete -f 001-policy.yaml
 ---
 
 ## 🔚 You're Done!
-
-✅ You've just tested **native image tag validation** in Kubernetes using Validation Admission Policies — no external webhook required.
